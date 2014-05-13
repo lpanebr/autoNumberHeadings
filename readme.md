@@ -11,7 +11,7 @@ How to auto number Google Documents Headings:
 
 1. Open your document > Tools > Script editor...
 2. Start a blank project
-3. Paste the the code below and save with your preffered name
+3. Paste the code from the [code.gs file](https://github.com/lpanebr/autoNumberHeadings/blob/master/code.gs) and save with your preffered name
 4. Select Run > onOpen and authorize the script for the first time
 5. Select Run > onOpen
 5. Change to your Document and try the functions on the Headings tools custom menu created.
