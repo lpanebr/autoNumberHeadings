@@ -1,4 +1,4 @@
-function addMenu() {
+function onOpen() {
   DocumentApp.getUi().createMenu('Headings Tools')
   .addItem('Auto Number Headings', 'numberHeadingsAdd')
   .addItem('Clear Heading Numbers', 'numberHeadingsClear')
