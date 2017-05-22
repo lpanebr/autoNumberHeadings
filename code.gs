@@ -27,6 +27,9 @@ function numberHeadings(add){
     if (!eTypeString.match(/Heading \d/)) {
       continue;
     }
+    if( eText.match(/^\s*$/)){
+      continue;
+    }
 
     if (add == true) {
       var patt = new RegExp(/Heading (\d)/);
