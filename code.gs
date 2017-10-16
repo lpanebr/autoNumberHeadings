@@ -36,6 +36,9 @@ function numberHeadings(add){
     if(eText.trim === ''){
       continue;
     }
+    if( eText.match(/^\s*$/)){
+      continue;
+    }
 
     if (add == true) {
       var level = new RegExp(/Heading (\d)/).exec(type)[1];  
