@@ -1,8 +1,7 @@
 function onOpen() {
-  // Add a menu with some items, some separators, and a sub-menu.
-  DocumentApp.getUi().createMenu('Headings tools')
-  .addItem('auto number Headings', 'numberHeadingsAdd')
-  .addItem('clear Headings numbers', 'numberHeadingsClear')
+  DocumentApp.getUi().createMenu('Headings Tools')
+  .addItem('Auto Number Headings', 'numberHeadingsAdd')
+  .addItem('Clear Heading Numbers', 'numberHeadingsClear')
   .addToUi();
 }
 
@@ -15,16 +14,22 @@ function numberHeadingsClear(){
 }
 
 function numberHeadings(add){
-
-  var doc = DocumentApp.getActiveDocument();
-  var body = doc.getBody();
-  var p = doc.getParagraphs();
+  var document = DocumentApp.getActiveDocument();
+  var body = document.getBody();
+  var paragraphs = document.getParagraphs();
   var numbers = [0,0,0,0,0,0,0];
-  for (var i in p) {
-    var e = p[i];
-    var eText = e.getText()+'';
-    var eTypeString = e.getHeading()+'';
-    if (!eTypeString.match(/Heading \d/)) {
+  for (var i in paragraphs) {
+    var element = paragraphs[i];
+    var text = element.getText()+'';
+    var type = element.getHeading()+'';
+    
+    // exclude everything but headings
+    if (!type.match(/Heading \d/)) {
+      continue;
+    }
+    
+    // exclude empty headings (e.g. page breaks generate these)
+    if(text.trim() === ''){
       continue;
     }
     
@@ -33,26 +38,24 @@ function numberHeadings(add){
     }
 
     if (add == true) {
-      var patt = new RegExp(/Heading (\d)/);
-      var eLevel = patt.exec(eTypeString)[1];
-      var txt = '';
-
-      numbers[eLevel]++;
-      for (var l = 1; l<=6; l++) {
-        if (l <= eLevel) {
-          txt += numbers[l]+'.';
+      var level = new RegExp(/Heading (\d)/).exec(type)[1];  
+      var numbering = '';
+      
+      numbers[level]++;
+      for (var currentLevel = 1; currentLevel <= 6; currentLevel++) {
+        if (currentLevel <= level) {
+          numbering += numbers[currentLevel] + '.';
         } else {
-          numbers[l] = 0;
+          numbers[currentLevel] = 0;
         }
       }
-      Logger.log(eText);
-      var newText = txt+' '+eText.replace(/^[0-9\.\s]+/, '');
-      e.setText(newText);
+      Logger.log(text);
+      var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
+      element.setText(newText);
       Logger.log([newText]);
     } else {
-      Logger.log(eText);
-      var newText = eText.replace(/^[0-9\.\s]+/, '');
-      e.setText(newText);
+      Logger.log(text);
+      element.setText(text.replace(/^[0-9\.\s]+/, ''));
     }
   }
 
