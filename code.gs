@@ -29,14 +29,7 @@ function numberHeadings(add){
     }
     
     // exclude empty headings (e.g. page breaks generate these)
-    if(text.trim() === ''){
-      continue;
-    }
-    
-    if(eText.trim === ''){
-      continue;
-    }
-    if( eText.match(/^\s*$/)){
+    if( text.match(/^\s*$/)){
       continue;
     }
 
