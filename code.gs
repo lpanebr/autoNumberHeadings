@@ -22,12 +22,12 @@ function numberHeadings(add){
     var element = paragraphs[i];
     var text = element.getText()+'';
     var type = element.getHeading()+'';
-    
+
     // exclude everything but headings
     if (!type.match(/Heading \d/)) {
       continue;
     }
-    
+
     // exclude empty headings (e.g. page breaks generate these)
     if( text.match(/^\s*$/)){
       continue;
@@ -36,7 +36,7 @@ function numberHeadings(add){
     if (add == true) {
       var level = new RegExp(/Heading (\d)/).exec(type)[1];  
       var numbering = '';
-      
+
       numbers[level]++;
       for (var currentLevel = 1; currentLevel <= 6; currentLevel++) {
         if (currentLevel <= level) {
@@ -46,13 +46,14 @@ function numberHeadings(add){
         }
       }
       Logger.log(text);
-      var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
-      element.setText(newText);
-      Logger.log([newText]);
+      // var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
+      element.replaceText('^[0-9\\.\\s]+', '');
+      element.insertText(0, numbering + ' ');
+      //Logger.log([newText]);
     } else {
       Logger.log(text);
-      element.setText(text.replace(/^[0-9\.\s]+/, ''));
+      // element.setText(text.replace(/^[0-9\.\s]+/, ''));
+      element.replaceText('^[0-9\\.\\s]+', '');
     }
   }
-
 }
