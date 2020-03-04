@@ -24,7 +24,7 @@ function numberHeadings(add){
     var type = element.getHeading()+'';
     
     // exclude everything but headings
-    if (!type.match(/Heading \d/)) {
+    if (!type.match(/HEADING\d/)) {
       continue;
     }
     
@@ -34,7 +34,7 @@ function numberHeadings(add){
     }
 
     if (add == true) {
-      var level = new RegExp(/Heading (\d)/).exec(type)[1];  
+      var level = new RegExp(/HEADING\d)/).exec(type)[1];
       var numbering = '';
       
       numbers[level]++;
