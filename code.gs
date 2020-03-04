@@ -34,7 +34,7 @@ function numberHeadings(add){
     }
 
     if (add == true) {
-      var level = new RegExp(/HEADING\d)/).exec(type)[1];
+      var level = new RegExp(/HEADING(\d)/).exec(type)[1];
       var numbering = '';
       
       numbers[level]++;
