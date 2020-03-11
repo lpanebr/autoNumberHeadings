@@ -1,5 +1,5 @@
 function onOpen() {
-  DocumentApp.getUi().createMenu('Headings Tools')
+  DocumentApp.getUi().createMenu('Heading Tools')
   .addItem('Auto Number Headings', 'numberHeadingsAdd')
   .addItem('Clear Heading Numbers', 'numberHeadingsClear')
   .addToUi();
