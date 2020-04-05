@@ -32,6 +32,8 @@ function numberHeadings(add){
     if( text.match(/^\s*$/)){
       continue;
     }
+    
+    var numberingRegex = /^[0-9]+(\.[0-9]+)*\. /;
 
     if (add == true) {
       var level = new RegExp(/HEADING(\d)/).exec(type)[1];
@@ -46,12 +48,12 @@ function numberHeadings(add){
         }
       }
       Logger.log(text);
-      var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
+      var newText = numbering + ' ' + text.replace(numberingRegex. /, '');
       element.setText(newText);
       Logger.log([newText]);
     } else {
       Logger.log(text);
-      element.setText(text.replace(/^[0-9\.\s]+/, ''));
+      element.setText(text.replace(numberingRegex, ''));
     }
   }
 
