@@ -48,7 +48,7 @@ function numberHeadings(add){
         }
       }
       Logger.log(text);
-      var newText = numbering + ' ' + text.replace(numberingRegex. /, '');
+      var newText = numbering + ' ' + text.replace(numberingRegex, '');
       element.setText(newText);
       Logger.log([newText]);
     } else {
