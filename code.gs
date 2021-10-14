@@ -45,6 +45,9 @@ function numberHeadings(add){
           numbers[currentLevel] = 0;
         }
       }
+      if (!numbering.match(/^[0-9]+\.$/)) {
+        numbering = numbering.replace(/.$/, '');
+      }
       Logger.log(text);
       var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
       element.setText(newText);
