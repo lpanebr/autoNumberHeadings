@@ -19,13 +19,13 @@ function numberHeadingsClear() {
 }
 
 function numberHeadings(add) {
-  var document = DocumentApp.getActiveDocument();
-  var paragraphs = document.getParagraphs();
-  var numbers = [0, 0, 0, 0, 0, 0, 0];
-  for (var i in paragraphs) {
-    var element = paragraphs[i];
-    var text = element.getText() + '';
-    var type = element.getHeading() + '';
+  let document = DocumentApp.getActiveDocument();
+  let paragraphs = document.getParagraphs();
+  let numbers = [0, 0, 0, 0, 0, 0, 0];
+  for (let i in paragraphs) {
+    let element = paragraphs[i];
+    let text = element.getText() + '';
+    let type = element.getHeading() + '';
 
     // exclude everything but headings
     if (!type.match(/HEADING\d/)) {
@@ -38,23 +38,23 @@ function numberHeadings(add) {
     }
 
     if (add == true) {
-      var level = new RegExp(/HEADING(\d)/).exec(type)[1];
-      var numbering = '';
+      let level = new RegExp(/HEADING(\d)/).exec(type)[1];
+      let numbering = '';
 
       numbers[level]++;
-      for (var currentLevel = 1; currentLevel <= 6; currentLevel++) {
+      for (let currentLevel = 1; currentLevel <= 6; currentLevel++) {
         if (currentLevel <= level) {
           numbering += numbers[currentLevel] + '.';
         } else {
           numbers[currentLevel] = 0;
         }
       }
-      Logger.log(text);
-      var newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
+      console.log(text);
+      let newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
       element.setText(newText);
-      Logger.log([newText]);
+      console.log([newText]);
     } else {
-      Logger.log(text);
+      console.log(text);
       element.setText(text.replace(/^[0-9\.\s]+/, ''));
     }
   }
