@@ -5,15 +5,15 @@ This script¹ lets you easily add or remove numbers to your Google Document Head
 
 Current functionalities are found under the added *Headings tools* Document menu and allow you to:
 
- - Add Headings Numbers
- - Remove Heading Numbers
- - Promote Headings (H1➡Title ... H6➡H5)
- - Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)
+- Add Headings Numbers
+- Remove Heading Numbers
+- Promote Headings (H1➡Title ... H6➡H5)
+- Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)
 
- - Add Heading Numbers... (asks which)
- - Remove Heading Numbers... (asks which)
- - Promote Headings (H1➡Title ... H6➡H5)... (asks which)
- - Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)... (asks which)
+- Add Heading Numbers... (asks which)
+- Remove Heading Numbers... (asks which)
+- Promote Headings (H1➡Title ... H6➡H5)... (asks which)
+- Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)... (asks which)
 
 ![image](2023-06-09-17-48-33.png)
 
