@@ -89,7 +89,7 @@ function numberHeadings(add = false, skipHeadings = false) {
       continue;
     }
 
-    element.replaceText("^[0-9\\.\\s]+", "")
+    element.replaceText("^[0-9]+(\\.[0-9]+)*\\. ", "")
 
     if (add == true) {
       let level = new RegExp(/HEADING(\d)/).exec(type)[1];
