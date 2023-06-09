@@ -2,7 +2,7 @@
  * @OnlyCurrentDoc
  */
 function onOpen() {
-  DocumentApp.getUi().createMenu('Headings Tools')
+  DocumentApp.getUi().createMenu('Heading Tools')
     .addItem('Add Headings Numbers', 'numberHeadingsAdd')
     .addItem('Remove Heading Numbers', 'numberHeadingsRemove')
     .addItem('Promote Headings (H1➡Title ... H6➡H5)', 'increaseHeadingLevels')
