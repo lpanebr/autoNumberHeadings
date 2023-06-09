@@ -1,10 +1,26 @@
 Google Apps Script Auto Number Headings
 ========
+This script¹ lets you easily add or remove numbers to your Google Document Headings.
+![image](2023-06-09-17-36-41.png)
 
-Modified version of [this script](http://pro-web.at/archives/auto-numbering-your-google-docs-headings) that adds a *Headings tools* Document menu allowing you to:
+Current functionalities are found under the added *Headings tools* Document menu and allow you to:
 
-* auto number Heading
-* clear Headings numbers
+ - Add Headings Numbers
+ - Remove Heading Numbers
+ - Promote Headings (H1➡Title ... H6➡H5)
+ - Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)
+
+ - Add Heading Numbers... (asks which)
+ - Remove Heading Numbers... (asks which)
+ - Promote Headings (H1➡Title ... H6➡H5)... (asks which)
+ - Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)... (asks which)
+
+![image](2023-06-09-17-48-33.png)
+
+Bugs or missing features?
+--------------
+
+Feel free to add issues or send pull requests! 😉
 
 How to auto number Google Documents Headings:
 --------------
@@ -16,4 +32,5 @@ How to auto number Google Documents Headings:
 5. Select Run > onOpen
 5. Change to your Document and try the functions on the Headings tools custom menu created.
 
-*Disclaimer*: you may have issues with empty Headings.. But you can always fix them and run action again.
+
+¹ Modified version of [this script](http://pro-web.at/archives/auto-numbering-your-google-docs-headings).
