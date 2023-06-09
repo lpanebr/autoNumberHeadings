@@ -5,8 +5,8 @@ function onOpen() {
   DocumentApp.getUi().createMenu('Headings Tools')
     .addItem('Auto Number Headings', 'numberHeadingsAdd')
     .addItem('Clear Heading Numbers', 'numberHeadingsClear')
-    .addItem('Increase Heading Levels', 'increaseHeadingLevels')
-    .addItem('Decrease Heading Levels', 'decreaseHeadingLevels')
+    .addItem('Promote Headings (H1➡Title ... H6➡H5)', 'increaseHeadingLevels')
+    .addItem('Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)', 'decreaseHeadingLevels')
     .addToUi();
 }
 
@@ -15,7 +15,7 @@ function numberHeadingsAdd() {
 }
 
 function numberHeadingsClear() {
-  numberHeadings(false);
+  numberHeadings(false); DocumentApp.Attribute.HEADING
 }
 
 function numberHeadings(add) {
@@ -58,12 +58,12 @@ function numberHeadings(add) {
 }
 
 function changeHeadingLevels(direction) {
-  let document = DocumentApp.getActiveDocument();
-  let paragraphs = document.getParagraphs();
+  let body = DocumentApp.getActiveDocument().getBody()
+  let paragraphs = body.getParagraphs();
   for (let i in paragraphs) {
-    let element = paragraphs[i];
-    let text = element.getText() + '';
-    let type = element.getHeading() + '';
+    let current_paragraph = paragraphs[i];
+    let text = current_paragraph.getText() + '';
+    let type = current_paragraph.getHeading() + '';
 
     // exclude everything but headings
     if (!type.match(/HEADING\d/)) {
@@ -88,12 +88,21 @@ function changeHeadingLevels(direction) {
       problemLevelFix = "TITLE"
     }
 
+    let newHeadingLevel = eval("DocumentApp.ParagraphHeading.HEADING" + newLevel)
     if (currentLevel == problemCurrentLevel) {
-      element.setHeading(eval("DocumentApp.ParagraphHeading." + problemLevelFix))
-    } else {
-      element.setHeading(eval("DocumentApp.ParagraphHeading.HEADING" + newLevel))
+      newHeadingLevel = eval("DocumentApp.ParagraphHeading." + problemLevelFix)
     }
+    let style = {};
+    style[DocumentApp.Attribute.HEADING] = newHeadingLevel
+
+    let curr_para_id = body.getChildIndex(current_paragraph)
+    let new_paragraph = current_paragraph.copy().setText(" ")
+    body.insertParagraph(curr_para_id + 1, new_paragraph).setAttributes(style).merge()
+
+    // current_paragraph.setAttributes(style)
   }
+
+
 }
 
 function increaseHeadingLevels() {
