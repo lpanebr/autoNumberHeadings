@@ -37,6 +37,8 @@ function numberHeadings(add) {
       continue;
     }
 
+    element.replaceText("^[0-9\\.\\s]+", "")
+
     if (add == true) {
       let level = new RegExp(/HEADING(\d)/).exec(type)[1];
       let numbering = '';
@@ -49,13 +51,7 @@ function numberHeadings(add) {
           numbers[currentLevel] = 0;
         }
       }
-      console.log(text);
-      let newText = numbering + ' ' + text.replace(/^[0-9\.\s]+/, '');
-      element.setText(newText);
-      console.log([newText]);
-    } else {
-      console.log(text);
-      element.setText(text.replace(/^[0-9\.\s]+/, ''));
+      element.insertText(0, numbering + ' ')
     }
   }
 
