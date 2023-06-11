@@ -11,19 +11,22 @@ This script¹ lets you easily add or remove numbers to your Google Document Head
 - Menu and Addon UIs.
 - Add Headings Numbers
 - Remove Heading Numbers
-- Promote Headings (H1➡Title ... H6➡H5)
-- Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)
+- Promote Headings (H1➙Title ... H6➙H5)
+- Demote Headings (Title➙Title, H1➙H2 ... H6➙Normal)
 - Output processed Headings as text only
 - Add/Remove and Promote/Demote only some heading levels (1-6)
 
 ## How to use
 After you [install the script](#how-to-install), the easiest way to Add/Remove is though the **Lord of The Rings shortcut** `Alt+/` that opens the Help menu with the cursor focused on the find shortcut field. From there you just need to type `head` to get the basic features:
+
 ![shortcut](2023-06-11-17-38-33.png)
 
 Or you can use mouse:
+
 ![menu](2023-06-09-17-48-33.png)
 
 Or you can use the Addon sidebar, which also lets you access the 'interactive' version and outputs the plain text headings:
+
 ![addon](2023-06-11-16-41-33.png)
 
 ## Bugs or missing features?
