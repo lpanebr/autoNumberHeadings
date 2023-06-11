@@ -25,15 +25,9 @@ function onOpen(e) {
   DocumentApp.getUi().createMenu('Heading Tools')
     .addItem('Add Headings Numbers', 'numberHeadingsAdd')
     .addItem('Remove Heading Numbers', 'numberHeadingsRemove')
+    .addSeparator()
     .addItem('Promote Headings (H1➡Title ... H6➡H5)', 'increaseHeadingLevels')
     .addItem('Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)', 'decreaseHeadingLevels')
-    .addSeparator()
-
-    .addItem('Add Heading Numbers... (asks which)', 'numberHeadingsAddSkipping')
-    .addItem('Remove Heading Numbers... (asks which)', 'numberHeadingsRemoveSkipping')
-    .addItem('Promote Headings (H1➡Title ... H6➡H5)... (asks which)', 'increaseHeadingLevelsSkipping')
-    .addItem('Demote Headings (Title➡Title, H1➡H2 ... H6➡Normal)... (asks which)', 'decreaseHeadingLevelsSkipping')
-    .addSeparator()
 
     .addToUi();
 
@@ -269,3 +263,4 @@ function getPreferences() {
     skippedLevels: userProperties.getProperty('skippedLevels')
   };
 }
+
