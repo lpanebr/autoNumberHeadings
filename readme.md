@@ -23,7 +23,7 @@ After you [install the script](#how-to-install), the easiest way to Add/Remove i
 
 Or you can use mouse:
 
-![menu](2023-06-09-17-48-33.png)
+![menu](2023-06-11-17-58-02.png)
 
 Or you can use the Addon sidebar, which also lets you access the 'interactive' version and outputs the plain text headings:
 
