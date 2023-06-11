@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  <!-- The CSS package above applies Google styling to buttons and other elements. -->
+
+  <style>
+    .branding-below {
+      bottom: 56px;
+      top: 0;
+    }
+
+    .branding-text {
+      left: 7px;
+      position: relative;
+      top: 3px;
+    }
+
+    .col-contain {
+      overflow: hidden;
+    }
+
+    .col-one {
+      float: left;
+      width: 50%;
+    }
+
+    .logo {
+      vertical-align: middle;
+    }
+
+    .radio-spacer {
+      height: 20px;
+    }
+
+    .width-100 {
+      width: 100%;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .branding-title {
+      color: darkred;
+      display: inline;
+    }
+
+    .branding-tile {
+      margin-bottom: 5px;
+    }
+  </style>
+  <title></title>
+</head>
+
+<body>
+  <div class="sidebar branding-below">
+    <div class="branding-tile">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 36 36" width="36">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z" />
+      </svg>
+      <h3 class="branding-title">autoNumberHeadings</h3>
+    </div>
+
+    <form>
+      <div class="block form-group">
+        <div>
+          <b>Action</b>
+          <div>
+            <input type="radio" name="action" id="radio-action-add" value="" checked="checked">
+            <label for="radio-action-add">Add numbers</label>
+          </div>
+          <div>
+            <input type="radio" name="action" id="radio-remove" value="remove">
+            <label for="radio-remove">Remove numbers</label>
+          </div>
+          <div>
+            <input type="radio" name="action" id="radio-promote" value="promote">
+            <label for="radio-promote">Promote <small>(H1➡Title ... H6➡H5)</small></label>
+          </div>
+          <div>
+            <input type="radio" name="action" id="radio-demote" value="demote">
+            <label for="radio-demote">Demote <small>(Title➡Title, H1➡H2 ... H6➡Normal)</small></label>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <input type="checkbox" id="skip-headings">
+        <label for="skip-headings">Process only headings below</label>
+      </div>
+      <div class="block form-group">
+        <label for="skipped-levels"><b>Headings to process</b> (optional)</label>
+        <input class="width-100" id="skipped-levels" rows="10" placeholder="1 2 3"></input>
+      </div>
+      <div class="block">
+        <input type="checkbox" id="save-prefs">
+        <label for="save-prefs">Save options as default</label>
+      </div>
+      <div class="block" id="button-bar">
+        <button class="blue" id="run-autonumber">Run</button>
+      </div>
+      <div class="block form-group">
+        <label for="preview-text"><b>Plain text headings</b></label>
+        <textarea class="width-100" id="preview-text" rows="10"></textarea>
+      </div>
+    </form>
+  </div>
+
+  <div class="sidebar bottom">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path
+        d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z" />
+    </svg>
+    <span class="gray branding-text">autoNumberHeadings by <a href='https://github.com/lpanebr/autoNumberHeadings'
+        target='_blank'>lpanebr</a></span>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    /**
+     * On document load, assign click handlers to each button and try to load the
+     * user's preferences if previously set.
+     */
+    $(function () {
+      $('#run-autonumber').click(runAutonumber);
+      $('#insert-text').click(insertText);
+      google.script.run.withSuccessHandler(loadPreferences)
+        .withFailureHandler(showError).getPreferences();
+    });
+
+    /**
+     * Callback function that populates the ui selection
+     * boxes with user preferences from the server.
+     *
+     * @param {Object} autonumberPrefs The saved user ui preferences.
+     */
+    function loadPreferences(autonumberPrefs) {
+      $('input:radio[name="action"]')
+        .filter('[value=' + autonumberPrefs.action + ']')
+        .attr('checked', true);
+      $('#skip-headings').prop('checked', autonumberPrefs.skipHeadings)
+      $('#skipped-levels').val(autonumberPrefs.skippedLevels);
+    }
+
+    /**
+     * Runs a server-side function to translate the user-selected text and update
+     * the sidebar UI with the resulting result.
+     */
+    function runAutonumber() {
+      this.disabled = true;
+      $('#error').remove();
+      const action = $('input[name=action]:checked').val();
+      const skipHeadings = $('#skip-headings').is(':checked')
+      const skippedLevels = $('#skipped-levels').val()
+      const savePrefs = $('#save-prefs').is(':checked');
+      google.script.run
+        .withSuccessHandler(
+          function (textAndResult, element) {
+            $('#preview-text').val(textAndResult.after);
+            $('#success').remove()
+            showSuccess('Success! Use <b>Undo</b> if you need.', $('#button-bar'));
+            element.disabled = false;
+          })
+        .withFailureHandler(
+          function (msg, element) {
+            showError(msg, $('#button-bar'));
+            element.disabled = false;
+          })
+        .withUserObject(this)
+        .processHeadings(action, skipHeadings, skippedLevels, savePrefs);
+    }
+
+    /**
+     * Runs a server-side function to insert the translated text into the document
+     * at the user's cursor or selection.
+     */
+    function insertText() {
+      this.disabled = true;
+      $('#error').remove();
+      google.script.run
+        .withSuccessHandler(
+          function (returnSuccess, element) {
+            element.disabled = false;
+          })
+        .withFailureHandler(
+          function (msg, element) {
+            showError(msg, $('#button-bar'));
+            element.disabled = false;
+          })
+        .withUserObject(this)
+        .insertText($('#preview-text').val());
+    }
+
+    /**
+     * Inserts a div that contains an error message after a given element.
+     *
+     * @param {string} msg The error message to display.
+     * @param {DOMElement} element The element after which to display the error.
+     */
+    function showError(msg, element) {
+      const div = $('<div id="error" class="error">' + msg + '</div>');
+      $(element).after(div);
+    }
+
+    /**
+     * Inserts a div that contains an error message after a given element.
+     *
+     * @param {string} msg The error message to display.
+     * @param {DOMElement} element The element after which to display the error.
+     */
+    function showSuccess(msg, element) {
+      const div = $('<div id="success" class="success">' + msg + '</div>');
+      $(element).after(div);
+      $(element).after(div);
+    }
+  </script>
+</body>
+
+</html>
