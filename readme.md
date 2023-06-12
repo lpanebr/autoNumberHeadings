@@ -17,7 +17,7 @@ This script¹ lets you easily add or remove numbers to your Google Document Head
 - Add/Remove and Promote/Demote only some heading levels (1-6)
 
 ## How to use
-After you [install the script](#how-to-install), the easiest way to Add/Remove is though the **Lord of The Rings shortcut** `Alt+/` that opens the Help menu with the cursor focused on the find shortcut field. From there you just need to type `head` to get the basic features:
+After you [install the script](#how-to-install), the easiest way to Add/Remove is through the **Lord of The Rings shortcut** `Alt+/` that opens the Help menu with the cursor focused on the find shortcut field. From there you just need to type `head` to get the basic features:
 
 ![shortcut](2023-06-11-17-38-33.png)
 
