@@ -89,7 +89,7 @@ function decreaseHeadingLevels() {
  * @return {Object} Not implemented: Object containing the resulting text and the result of the
  *     operation (success or error).
  */
-function processHeadings(action, skipHeadings, skippedLevels, savePrefs) {
+function processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, savePrefs) {
   if (savePrefs) {
     if (skippedLevels.match(/^[1-6,; e and y-]+$/) == null)
       return false
@@ -99,7 +99,8 @@ function processHeadings(action, skipHeadings, skippedLevels, savePrefs) {
     PropertiesService.getUserProperties()
       .setProperty('action', action)
       .setProperty('skipHeadings', skipHeadings)
-      .setProperty('skippedLevels', skippedLevels);
+      .setProperty('skippedLevels', skippedLevels)
+      .setProperty('titlesRestartNumbering', titlesRestartNumbering);
   }
 
   let result
@@ -116,12 +117,12 @@ function processHeadings(action, skipHeadings, skippedLevels, savePrefs) {
 
     case 'remove':
       // 
-      result = numberHeadings(false, skipHeadings, skippedLevels);
+      result = numberHeadings(false, skipHeadings, skippedLevels, titlesRestartNumbering);
       break
 
     default:
       //
-      result = numberHeadings(true, skipHeadings, skippedLevels);
+      result = numberHeadings(true, skipHeadings, skippedLevels, titlesRestartNumbering);
       break
   }
   // const text = getSelectedText().join('\n');
@@ -129,7 +130,7 @@ function processHeadings(action, skipHeadings, skippedLevels, savePrefs) {
 }
 
 
-function numberHeadings(add = false, skipHeadings = false, skippedLevels) {
+function numberHeadings(add = false, skipHeadings = false, skippedLevels, titlesRestartNumbering) {
   let document = DocumentApp.getActiveDocument();
   let paragraphs = document.getParagraphs();
   let numbers = [0, 0, 0, 0, 0, 0, 0];
@@ -145,6 +146,10 @@ function numberHeadings(add = false, skipHeadings = false, skippedLevels) {
     let element = paragraphs[i];
     let text = element.getText() + '';
     let type = element.getHeading() + '';
+
+    if (type === 'TITLE' && titlesRestartNumbering) {
+      numbers = [0, 0, 0, 0, 0, 0, 0];
+    }
 
     // exclude everything but headings
     if (!type.match(headingsToProcessRegex)) {
@@ -260,7 +265,7 @@ function getPreferences() {
   return {
     action: userProperties.getProperty('action'),
     skipHeadings: userProperties.getProperty('skipHeadings'),
-    skippedLevels: userProperties.getProperty('skippedLevels')
+    skippedLevels: userProperties.getProperty('skippedLevels'),
+    titlesRestartNumbering: userProperties.getProperty('titlesRestartNumbering')
   };
 }
-
