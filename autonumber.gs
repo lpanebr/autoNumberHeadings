@@ -19,10 +19,18 @@
  */
 function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
-    .addItem('Start', 'showSidebar')
+    .addItem('Open sidebar', 'showSidebar')
+    .addSeparator()
+    .addItem('Add Headings Numbers', 'numberHeadingsAdd')
+    .addItem('Remove Heading Numbers', 'numberHeadingsRemove')
+    .addSeparator()
+    .addItem('Promote Headings (H1➙Title ... H6➙H5)', 'increaseHeadingLevels')
+    .addItem('Demote Headings (Title➙Title, H1➙H2 ... H6➙Normal)', 'decreaseHeadingLevels')
     .addToUi();
 
   DocumentApp.getUi().createMenu('Heading Tools')
+    .addItem('Open sidebar', 'showSidebar')
+    .addSeparator()
     .addItem('Add Headings Numbers', 'numberHeadingsAdd')
     .addItem('Remove Heading Numbers', 'numberHeadingsRemove')
     .addSeparator()
