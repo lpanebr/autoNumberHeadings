@@ -88,6 +88,11 @@
           </div>
         </div>
       </div>
+      
+      <div class="block">
+        <input type="checkbox" id="titles-restart-numbering">
+        <label for="titles-restart-numbering">Titles restart numbering</label>
+      </div>
       <div class="block">
         <input type="checkbox" id="skip-headings">
         <label for="skip-headings">Process only headings below</label>
@@ -145,6 +150,7 @@
         .attr('checked', true);
       $('#skip-headings').prop('checked', autonumberPrefs.skipHeadings)
       $('#skipped-levels').val(autonumberPrefs.skippedLevels);
+      $('#titles-restart-numbering').prop('checked', autonumberPrefs.titlesRestartNumbering);
     }
 
     /**
@@ -157,6 +163,7 @@
       const action = $('input[name=action]:checked').val();
       const skipHeadings = $('#skip-headings').is(':checked')
       const skippedLevels = $('#skipped-levels').val()
+      const titlesRestartNumbering = $('#titles-restart-numbering').is(':checked');
       const savePrefs = $('#save-prefs').is(':checked');
       google.script.run
         .withSuccessHandler(
@@ -172,7 +179,7 @@
             element.disabled = false;
           })
         .withUserObject(this)
-        .processHeadings(action, skipHeadings, skippedLevels, savePrefs);
+        .processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, savePrefs);
     }
 
     /**

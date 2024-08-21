@@ -15,6 +15,7 @@ This script¹ lets you easily add or remove numbers to your Google Document Head
 - Demote Headings (Title➙Title, H1➙H2 ... H6➙Normal)
 - Output processed Headings as text only
 - Add/Remove and Promote/Demote only some heading levels (1-6)
+- Restart numbering when a Title paragraph occurs
 
 ## How to use
 After you [install the script](#how-to-install), the easiest way to Add/Remove is though the **Lord of The Rings shortcut** `Alt+/` that opens the Help menu with the cursor focused on the find shortcut field. From there you just need to type `head` to get the basic features:
@@ -27,7 +28,7 @@ Or you can use mouse:
 
 Or you can use the Addon sidebar, which also lets you access the 'interactive' version and outputs the plain text headings:
 
-![addon](2023-06-11-16-41-33.png)
+![addon](2024-08-14-19-11-00.png)
 
 ## Bugs or missing features?
 Feel free to add issues or send pull requests! 😉
