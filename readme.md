@@ -18,6 +18,7 @@ This script¹ lets you easily add or remove numbers to your Google Document Head
 - Outputs processed Headings as plain text
 - Option to Add/Remove and Promote/Demote only some heading levels (1-6)
 - Option to restart numbering when a Title paragraph occurs
+- Option to restrict to selected paragraphs
 
 Check the [How to install](#how-to-install) if you like it!
 

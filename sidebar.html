@@ -90,6 +90,10 @@
       </div>
       
       <div class="block">
+        <input type="checkbox" id="selection-only">
+        <label for="selection-only">Restrict to selected paragraphs</label>
+      </div>
+      <div class="block">
         <input type="checkbox" id="titles-restart-numbering">
         <label for="titles-restart-numbering">Titles restart numbering</label>
       </div>
@@ -164,6 +168,7 @@
       const skipHeadings = $('#skip-headings').is(':checked')
       const skippedLevels = $('#skipped-levels').val()
       const titlesRestartNumbering = $('#titles-restart-numbering').is(':checked');
+      const selectionOnly = $('#selection-only').is(':checked');
       const savePrefs = $('#save-prefs').is(':checked');
       google.script.run
         .withSuccessHandler(
@@ -179,7 +184,7 @@
             element.disabled = false;
           })
         .withUserObject(this)
-        .processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, savePrefs);
+        .processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, selectionOnly, savePrefs);
     }
 
     /**

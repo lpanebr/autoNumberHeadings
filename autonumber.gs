@@ -97,7 +97,7 @@ function decreaseHeadingLevels() {
  * @return {Object} Not implemented: Object containing the resulting text and the result of the
  *     operation (success or error).
  */
-function processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, savePrefs) {
+function processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, selectionOnly, savePrefs) {
   if (savePrefs) {
     if (skippedLevels.match(/^[1-6,; e and y-]+$/) == null)
       return false
@@ -108,29 +108,30 @@ function processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbe
       .setProperty('action', action)
       .setProperty('skipHeadings', skipHeadings)
       .setProperty('skippedLevels', skippedLevels)
-      .setProperty('titlesRestartNumbering', titlesRestartNumbering);
+      .setProperty('titlesRestartNumbering', titlesRestartNumbering)
+      .setProperty('selectionOnly', selectionOnly);
   }
 
   let result
   switch (action) {
     case 'promote':
       // 
-      result = changeHeadingLevels("up", skipHeadings, skippedLevels);
+      result = changeHeadingLevels("up", skipHeadings, skippedLevels, selectionOnly);
       break
 
     case 'demote':
       // 
-      result = changeHeadingLevels("down", skipHeadings, skippedLevels);
+      result = changeHeadingLevels("down", skipHeadings, skippedLevels, selectionOnly);
       break
 
     case 'remove':
       // 
-      result = numberHeadings(false, skipHeadings, skippedLevels, titlesRestartNumbering);
+      result = numberHeadings(false, skipHeadings, skippedLevels, titlesRestartNumbering, selectionOnly);
       break
 
     default:
       //
-      result = numberHeadings(true, skipHeadings, skippedLevels, titlesRestartNumbering);
+      result = numberHeadings(true, skipHeadings, skippedLevels, titlesRestartNumbering, selectionOnly);
       break
   }
   // const text = getSelectedText().join('\n');
@@ -138,9 +139,9 @@ function processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbe
 }
 
 
-function numberHeadings(add = false, skipHeadings = false, skippedLevels, titlesRestartNumbering) {
+function numberHeadings(add = false, skipHeadings = false, skippedLevels, titlesRestartNumbering, selectionOnly) {
   let document = DocumentApp.getActiveDocument();
-  let paragraphs = document.getParagraphs();
+  let paragraphs = selectionOnly ? document.getSelection().getRangeElements().map(re => re.getElement().asParagraph()) : document.getParagraphs();
   let numbers = [0, 0, 0, 0, 0, 0, 0];
   let headingsToProcessRegex = /HEADING\d/
   let before = []
@@ -195,9 +196,10 @@ function numberHeadings(add = false, skipHeadings = false, skippedLevels, titles
   }
 }
 
-function changeHeadingLevels(direction = '', skipHeadings = false, skippedLevels) {
-  let body = DocumentApp.getActiveDocument().getBody()
-  let paragraphs = body.getParagraphs();
+function changeHeadingLevels(direction = '', skipHeadings = false, skippedLevels, selectionOnly) {
+  let document = DocumentApp.getActiveDocument()
+  let body = document.getBody()
+  let paragraphs = selectionOnly ? document.getSelection().getRangeElements().map(re => re.getElement().asParagraph()) : document.getParagraphs();
   let headingsToProcessRegex = /HEADING\d/
   let before = []
   let after = []
