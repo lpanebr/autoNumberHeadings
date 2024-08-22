@@ -36,7 +36,7 @@ Or you can use your mouse:
 
 Or you can use the "Open sidebar" function to access the interactive version, which lets you change options and also outputs the plain text headings:
 
-![addon](2024-08-14-19-11-00.png)
+![addon](2024-08-21-22-23-00.png)
 
 ## Bugs or missing features?
 
