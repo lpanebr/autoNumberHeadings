@@ -68,8 +68,8 @@
 
     <form>
       <div class="block form-group">
-        <div>
-          <b>Action</b>
+        <details open="true">
+          <summary>Action</summary>
           <div>
             <input type="radio" name="action" id="radio-action-add" value="" checked="checked">
             <label for="radio-action-add">Add numbers</label>
@@ -86,35 +86,220 @@
             <input type="radio" name="action" id="radio-demote" value="demote">
             <label for="radio-demote">Demote <small>(Title➙Title, H1➙H2 ... H6➙Normal)</small></label>
           </div>
-        </div>
-      </div>
-      
-      <div class="block">
-        <input type="checkbox" id="selection-only">
-        <label for="selection-only">Restrict to selected paragraphs</label>
-      </div>
-      <div class="block">
-        <input type="checkbox" id="titles-restart-numbering">
-        <label for="titles-restart-numbering">Titles restart numbering</label>
+          <div>
+            <input type="radio" name="action" id="radio-save" value="save">
+            <label for="radio-save">Save <small>(save the following settings as default)</small></label>
+          </div>
+        </details>
       </div>
       <div class="block">
-        <input type="checkbox" id="skip-headings">
-        <label for="skip-headings">Process only headings below</label>
-      </div>
-      <div class="block form-group">
-        <label for="skipped-levels"><b>Headings to process</b> (optional)</label>
-        <input class="width-100" id="skipped-levels" rows="10" placeholder="1 2 3"></input>
+        <details>
+          <summary>Heading styles</summary>
+          <div><small>Style 1.1.1.1.1.1. will apply to all levels if chosen on level 1, and only uses numbers.</small>
+          </div>
+          <div>
+            <label class="block" for="heading-1-style">Choose Heading 1 style:</label>
+            <select class="width-100" id="heading-1-style" name="heading-1-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-1-breaker">Choose Heading 1 breaker:</label>
+            <select class="width-100" id="heading-1-breaker" name="heading-1-breaker">
+              <option value="dot">1.</option>
+              <option value="running-dot" selected>1.1.1.1.1.1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-2-style">Choose Heading 2 style:</label>
+            <select class="width-100" id="heading-2-style" name="heading-2-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-2-breaker">Choose Heading 2 breaker:</label>
+            <select class="width-100" id="heading-2-breaker" name="heading-2-breaker">
+              <option value="dot">1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-3-style">Choose Heading 3 style:</label>
+            <select class="width-100" id="heading-3-style" name="heading-3-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-3-breaker">Choose Heading 3 breaker:</label>
+            <select class="width-100" id="heading-3-breaker" name="heading-3-breaker">
+              <option value="dot">1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-4-style">Choose Heading 4 style:</label>
+            <select class="width-100" id="heading-4-style" name="heading-4-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-4-breaker">Choose Heading 4 breaker:</label>
+            <select class="width-100" id="heading-4-breaker" name="heading-4-breaker">
+              <option value="dot">1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-5-style">Choose Heading 5 style:</label>
+            <select class="width-100" id="heading-5-style" name="heading-5-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-5-breaker">Choose Heading 5 breaker:</label>
+            <select class="width-100" id="heading-5-breaker" name="heading-5-breaker">
+              <option value="dot">1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-6-style">Choose Heading 6 style:</label>
+            <select class="width-100" id="heading-6-style" name="heading-6-style">
+              <option value="number" selected>1</option>
+              <option value="d-number">01</option>
+              <option value="l-alpha">a</option>
+              <option value="u-alpha">A</option>
+              <option value="l-roman">i</option>
+              <option value="u-roman">I</option>
+            </select>
+          </div>
+          <div>
+            <label class="block" for="heading-6-breaker">Choose Heading 6 breaker:</label>
+            <select class="width-100" id="heading-6-breaker" name="heading-6-breaker">
+              <option value="dot">1.</option>
+              <option value="close-bracket">1)</option>
+              <option value="open-close-bracket">(1)</option>
+              <option value="dash">1-</option>
+              <option value="colon">1:</option>
+              <option value="semicolon">1;</option>
+            </select>
+          </div>
+          <div>
+            <p></p>
+            <b>Number to Title Separator</b>
+            <div>
+              <label class="block" for="heading-separator">Choose Number to Title separator:</label>
+              <select class="width-100" id="heading-separator" name="heading-separator">
+                <option value="space" selected>Space (1. )</option>
+                <option value="tab">Tab (1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</option>
+                <option value="dash">Dash (1.-)</option>
+                <option value="colon">Colon (1.:)</option>
+                <option value="semicolon">Semicolon (1.;)</option>
+              </select>
+            </div>
+          </div>
+        </details>
       </div>
       <div class="block">
-        <input type="checkbox" id="save-prefs">
-        <label for="save-prefs">Save options as default</label>
+        <details>
+          <summary>Appendix style</summary>
+          <div><small>Appendicies will be "numbered" with capital alpha letters for Heading 1, and for Heading 2 - 6,
+              use Style 2 - 6 from above.</small></div>
+          <div>
+            <input type="checkbox" id="appendix-separate-style">
+            <label for="appendix-separate-style">Appendix separate style?</label>
+          </div>
+          <div class="block form-group">
+            <label for="appendix-prefix">Appendix prefix (Default "Appendix " with a trailing space)</label>
+            <input class="width-20" id="appendix-prefix" rows="1" placeholder="Appendix "></input>
+          </div>
+        </details>
+      </div>
+      <div class="block">
+        <details>
+          <summary>Overides</summary>
+          <div class="block">
+            <bold>Matching</bold>
+            <div>
+              <input type="radio" name="matching" id="radio-matching-hash-numbered" value="radio-matching-hash-numbered">
+              <label for="radio-matching-hash-numbered"># and any numbered heading</label>
+            </div>
+            <div>
+              <input type="radio" name="matching" id="radio-matching-any" value="radio-matching-any" checked="checked">
+              <label for="radio-matching-any">Any heading</label>
+            </div>
+          </div>
+          <div class="block">
+            <input type="checkbox" id="titles-restart-numbering">
+            <label for="titles-restart-numbering">Titles restart numbering</label>
+          </div>
+          <div class="block">
+            <input type="checkbox" id="skip-headings">
+            <label for="skip-headings">Process only headings listed below</label>
+          </div>
+          <div class="block form-group">
+            <label for="skipped-levels"><b>Headings to process</b> (optional)</label>
+            <input class="width-100" id="skipped-levels" rows="10" placeholder="1 2 3"></input>
+          </div>
+        </details>
       </div>
       <div class="block" id="button-bar">
         <button class="blue" id="run-autonumber">Run</button>
       </div>
-      <div class="block form-group">
-        <label for="preview-text"><b>Plain text headings</b></label>
-        <textarea class="width-100" id="preview-text" rows="10"></textarea>
+      <div class="block">
+        <details>
+          <summary>Results</summary>
+          <div class="block form-group">
+            <label for="preview-text"><b>Plain text headings</b></label>
+            <textarea class="width-100" id="preview-text" rows="10"></textarea>
+          </div>
+        </details>
       </div>
     </form>
   </div>
@@ -129,7 +314,7 @@
         target='_blank'>lpanebr</a></span>
   </div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
     /**
      * On document load, assign click handlers to each button and try to load the
@@ -137,7 +322,14 @@
      */
     $(function () {
       $('#run-autonumber').click(runAutonumber);
-      $('#insert-text').click(insertText);
+      $('#heading-1-breaker').change(function() {
+        if ($(this).val() == "running-dot") {
+          $("#heading-1-style").val("number");
+          disableHeadings();
+        } else {
+          enableHeadings();
+        }
+      });
       google.script.run.withSuccessHandler(loadPreferences)
         .withFailureHandler(showError).getPreferences();
     });
@@ -152,9 +344,62 @@
       $('input:radio[name="action"]')
         .filter('[value=' + autonumberPrefs.action + ']')
         .attr('checked', true);
-      $('#skip-headings').prop('checked', autonumberPrefs.skipHeadings)
+      $("#heading-1-style").val(autonumberPrefs.styleData.h1style);
+      $("#heading-1-breaker").val(autonumberPrefs.styleData.h1breaker);
+      $("#heading-2-style").val(autonumberPrefs.styleData.h2style);
+      $("#heading-2-breaker").val(autonumberPrefs.styleData.h2breaker);
+      $("#heading-3-style").val(autonumberPrefs.styleData.h3style);
+      $("#heading-3-breaker").val(autonumberPrefs.styleData.h3breaker);
+      $("#heading-4-style").val(autonumberPrefs.styleData.h4style);
+      $("#heading-4-breaker").val(autonumberPrefs.styleData.h4breaker);
+      $("#heading-5-style").val(autonumberPrefs.styleData.h5style);
+      $("#heading-5-breaker").val(autonumberPrefs.styleData.h5breaker);
+      $("#heading-6-style").val(autonumberPrefs.styleData.h6style);
+      $("#heading-6-breaker").val(autonumberPrefs.styleData.h6breaker);
+      $("#heading-separator").val(autonumberPrefs.styleData.hseparator);
+      $("#appendix-separate-style").prop('checked', autonumberPrefs.styleData.appendix);
+      $("#appendix-prefix").val(autonumberPrefs.styleData.appendixPrefix);
+      if (autonumberPrefs.styleData.anyHeadings) {
+        $("radio-matching-any").attr('checked', true);
+      } else {
+        $("radio-matching-hash-numbered").attr('checked', true);
+      }
+      $('#titles-restart-numbering').prop('checked', autonumberPrefs.titlesRestartNumbering.toLowerCase() === "true");
+      $('#skip-headings').prop('checked', autonumberPrefs.skipHeadings.toLowerCase() === "true");
       $('#skipped-levels').val(autonumberPrefs.skippedLevels);
-      $('#titles-restart-numbering').prop('checked', autonumberPrefs.titlesRestartNumbering);
+      if (autonumberPrefs.styleData.h1breaker == "running-dot") {
+        disableHeadings();
+      } else {
+        enableHeadings();
+      }
+    }
+
+    function disableHeadings() {
+      $("#heading-2-breaker").prop('disabled', true);
+      $("#heading-3-breaker").prop('disabled', true);
+      $("#heading-4-breaker").prop('disabled', true);
+      $("#heading-5-breaker").prop('disabled', true);
+      $("#heading-6-breaker").prop('disabled', true);
+      $("#heading-1-style").prop('disabled', true);
+      $("#heading-2-style").prop('disabled', true);
+      $("#heading-3-style").prop('disabled', true);
+      $("#heading-4-style").prop('disabled', true);
+      $("#heading-5-style").prop('disabled', true);
+      $("#heading-6-style").prop('disabled', true);
+    }
+
+    function enableHeadings() {
+      $("#heading-2-breaker").prop('disabled', false);
+      $("#heading-3-breaker").prop('disabled', false);
+      $("#heading-4-breaker").prop('disabled', false);
+      $("#heading-5-breaker").prop('disabled', false);
+      $("#heading-6-breaker").prop('disabled', false);
+      $("#heading-1-style").prop('disabled', false);
+      $("#heading-2-style").prop('disabled', false);
+      $("#heading-3-style").prop('disabled', false);
+      $("#heading-4-style").prop('disabled', false);
+      $("#heading-5-style").prop('disabled', false);
+      $("#heading-6-style").prop('disabled', false);   
     }
 
     /**
@@ -165,11 +410,27 @@
       this.disabled = true;
       $('#error').remove();
       const action = $('input[name=action]:checked').val();
-      const skipHeadings = $('#skip-headings').is(':checked')
-      const skippedLevels = $('#skipped-levels').val()
+      const styleData = {
+        h1style: $("#heading-1-style").val(),
+        h1breaker: $("#heading-1-breaker").val(),
+        h2style: $("#heading-2-style").val(),
+        h2breaker: $("#heading-2-breaker").val(),
+        h3style: $("#heading-3-style").val(),
+        h3breaker: $("#heading-3-breaker").val(),
+        h4style: $("#heading-4-style").val(),
+        h4breaker: $("#heading-4-breaker").val(),
+        h5style: $("#heading-5-style").val(),
+        h5breaker: $("#heading-5-breaker").val(),
+        h6style: $("#heading-6-style").val(),
+        h6breaker: $("#heading-6-breaker").val(),
+        hseparator: $("#heading-separator").val(),
+        appendix: $("#appendix-separate-style").is(':checked'),
+        appendixPrefix: $("#appendix-prefix").val()
+      };
+      const anyHeadings = $('input[name=matching]:checked').val() == "radio-matching-any";
       const titlesRestartNumbering = $('#titles-restart-numbering').is(':checked');
-      const selectionOnly = $('#selection-only').is(':checked');
-      const savePrefs = $('#save-prefs').is(':checked');
+      const skipHeadings = $('#skip-headings').is(':checked');
+      const skippedLevels = $('#skipped-levels').val();
       google.script.run
         .withSuccessHandler(
           function (textAndResult, element) {
@@ -184,28 +445,7 @@
             element.disabled = false;
           })
         .withUserObject(this)
-        .processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, selectionOnly, savePrefs);
-    }
-
-    /**
-     * Runs a server-side function to insert the translated text into the document
-     * at the user's cursor or selection.
-     */
-    function insertText() {
-      this.disabled = true;
-      $('#error').remove();
-      google.script.run
-        .withSuccessHandler(
-          function (returnSuccess, element) {
-            element.disabled = false;
-          })
-        .withFailureHandler(
-          function (msg, element) {
-            showError(msg, $('#button-bar'));
-            element.disabled = false;
-          })
-        .withUserObject(this)
-        .insertText($('#preview-text').val());
+        .processHeadings(action, skipHeadings, skippedLevels, titlesRestartNumbering, styleData, anyHeadings);
     }
 
     /**
